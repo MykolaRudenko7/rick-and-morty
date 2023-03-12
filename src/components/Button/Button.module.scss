@@ -1,4 +1,5 @@
 .button {
+	display: inline-block;
 	font-family: 'Karla';
 	font-style: normal;
 	font-weight: 700;
@@ -22,7 +23,7 @@
 		height: 24px;
 		background-image: url('../../assets/BackButton.svg');
 
-		transition: all 200ms;
+		transition: all 250ms;
 	}
 
 	&:hover {

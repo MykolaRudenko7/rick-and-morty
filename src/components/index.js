@@ -1,3 +1,5 @@
 export * from './Search/index'
 export * from './Card/index'
 export * from './Button/index'
+export * from './Pagination/index'
+export * from './Card/Skeleton'
