@@ -1,0 +1,57 @@
+.card {
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    overflow: hidden;
+    height: 168px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    @media (max-width: 747px) {
+      height: 232px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1px;
+    padding: 12px 16px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    &:hover,
+    &:visited {
+      color: cornflowerblue;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

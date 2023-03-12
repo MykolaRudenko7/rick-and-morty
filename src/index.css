@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular,500&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Karla:700");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+img {
+  vertical-align: top;
+}
+
+body {
+  line-height: 1;
+  min-width: 360px;
+}
+
+html,
+body {
+  background: #fff;
+  height: 100%;
+
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-style: normal;
+}
+
+.app {
+  min-height: 100%;
+  overflow: hidden;
+  max-width: 1440px;
+  margin: 0 auto;
+}
