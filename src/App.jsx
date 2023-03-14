@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Loader, NotFound } from './components';
+import { AuthProvider } from './components/auth';
 //
 import { CharacterDetails, MainPage } from './pages/index';
 //
@@ -56,6 +57,9 @@ function App() {
 
   return (
     <div className="app">
+      {/* <button>
+        <AuthProvider />
+      </button> */}
       <PageContext.Provider value={{ currentPage, setCurrentPage, info }}>
         <Routes>
           <Route
