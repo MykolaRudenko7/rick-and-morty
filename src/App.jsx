@@ -1,49 +1,86 @@
 import axios from 'axios';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Loader, NotFound } from './components';
+//
 import { CharacterDetails, MainPage } from './pages/index';
+//
+// в провайдері: стейт вбраної сторінки і загальна к-сть стр.
+export const PageContext = React.createContext();
+//
+//
 //
 //
 //
 function App() {
-  const [ifLoading, setIfLoading] = React.useState(true);
-  // номер стр
-  const [pageNumber, setPageNumber] = React.useState(1)
-  // дані
+  // дані персонажів і номер стр
   const [data, setData] = React.useState([]);
-  const { info, results } = data;
+  // в інфо => к-сть сторінок всього
+  const [info, setInfo] = React.useState();
+  // чи завантажилась стр.
+  const [ifLoading, setIfLoading] = React.useState(false);
+  // номер сторінки
+  const [currentPage, setCurrentPage] = React.useState(1);
+  // значення інпуту 'глобальне'
+  const [search, setSearch] = React.useState('');
 
-  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`
+  //
+  let API = `https://rickandmortyapi.com/api/character?page=${currentPage}&name=${search}`;
 
-  // ф-ція отримання даних
-  const fetchData = async () => {
-    try {
-      await axios.get(api).then((res) => {
-        setData(res.data)
-        setIfLoading(true);
-      });
-    } catch (error) {
-      setIfLoading(false);
-      console.log('Error!');
-    }
-  };
-
-  // першиq рендер і відслідковування
+  // запит і відслідковування
   React.useEffect(() => {
-    fetchData()
-  }, [api])
+    axios
+      .get(API)
+      .then((response) => {
+        // сортування
+        const sortedCharacters = response.data.results.sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
+        // песонажі і стр.
+        setData(sortedCharacters);
+        setInfo(response.data.info);
+        setIfLoading(true);
+      })
+      .catch((error) => {
+        setIfLoading(false);
+        console.log(error);
+      });
+  }, [API]);
 
+  // при кожному введенні тексту у поле вводу оновлюю стан searchTerm.
+  // наступний рядок фільтрує список персонажів за співпадінням з searchTerm.
+  // передаю пропсом для рендеру
+  const filteredCharacters = data.filter((character) => {
+    return character.name.toLowerCase().includes(search.toLowerCase());
+  });
 
-
-  console.log(data);
   return (
     <div className="app">
-      <Routes>
-        <Route path="/" element={<MainPage results={results} />} />
-        <Route path="/:id" element={<CharacterDetails/>} />
-      </Routes>
+      <PageContext.Provider value={{ currentPage, setCurrentPage, info }}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainPage
+                characters={filteredCharacters}
+                setSearch={setSearch}
+                ifLoading={ifLoading}
+              />
+            }
+          />
+          <Route path="/characters/:id" results={data} element={<CharacterDetails />} />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loader />}>
+                <NotFound />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </PageContext.Provider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

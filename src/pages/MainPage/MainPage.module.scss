@@ -10,8 +10,8 @@
 	width: 100%;
 
 	&__logo {
-		max-width: 600px;
-		max-height: 200px;
+		width: 600px;
+		height: 200px;
 		display: inline-block;
 		text-align: center;
 		margin-top: 86px;
@@ -23,7 +23,14 @@
 			object-fit: cover;
 		}
 
+		@media (max-width: 768px) {
+			width: 370px;
+			height: 120px;
+		}
+
 		@media (max-width: 425px) {
+			width: 312px;
+			height: 104px;
 			margin-top: 92px;
 			margin-bottom: 32px;
 		}
@@ -36,21 +43,12 @@
 		grid-template-rows: repeat(2, auto);
 		grid-column-gap: 20px;
 		grid-row-gap: 24px;
-		margin-bottom: 24px;
-	}
+		margin-bottom: 50px;
 
-	& {
-		grid-row-gap: 32px;
-	}
-}
-
-.error {
-	text-align: center;
-	margin: 100px 0;
-
-	h2 {
-		font-size: 32px;
-		margin-bottom: 20px;
-		font-weight: 700;
+		@media (max-width: 425px) {
+			grid-row-gap: 32px;
+		}
 	}
 }
+
+

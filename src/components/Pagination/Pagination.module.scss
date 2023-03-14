@@ -1,5 +1,5 @@
 .paginate {
-	margin-bottom: 24px;
+	margin-bottom: 86px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -8,21 +8,28 @@
 		cursor: pointer;
 		background-color: #f3f3f3;
 		margin: 0 10px;
-		font-weight: 600;
-		padding: 15px 20px;
+		font-weight: 500;
+		font-size: 14px;
+		padding: 15px 18px;
 		border-radius: 5px;
 		color: rgba(0, 0, 0, 0.87);
-		@media (max-width: 560px) {
-			font-size: 15px;
-			padding: 12px;
-			margin: 0 5px;
+
+		@media (max-width: 768px) {
+
+			padding: 10px;
+			margin: 0 6px;
+		}
+
+		@media (max-width: 425px) {
+			font-size: 12px;
+			padding: 9px;
+			margin: 0 4px;
 		}
 
 		&:hover {
 			background-color: #e4e2e2;
 		}
 	}
-
 }
 
 :global {

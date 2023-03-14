@@ -5,6 +5,7 @@
   flex-direction: column;
 
   &__image {
+    border-radius: 4px 4px 0 0;
     overflow: hidden;
     height: 168px;
 
@@ -54,4 +55,8 @@
     letter-spacing: 0.25px;
     color: rgba(0, 0, 0, 0.6);
   }
+}
+
+.skeleton {
+  margin: 0 auto;
 }
