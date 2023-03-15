@@ -4,6 +4,7 @@ import React from 'react';
 import { auth } from '../../components/firebase';
 import { Card, Pagination, Search, Skeleton } from '../../components/index';
 //
+import { useNavigate } from 'react-router-dom';
 import LogoImg from '../../assets/Logo.png';
 import style from './MainPage.module.scss';
 //
@@ -14,6 +15,8 @@ import style from './MainPage.module.scss';
 export const MainPage = ({ setIsAuth, characters, setSearch, ifLoading }) => {
   // скелетони
   const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index} />);
+  // навігація
+  let navigate = useNavigate();
 
   // вихід з акаунту
   const signUserOut = () => {
@@ -24,7 +27,7 @@ export const MainPage = ({ setIsAuth, characters, setSearch, ifLoading }) => {
       // чищу стейт
       setIsAuth(false);
       // переправляю
-      window.location.pathname = '/login';
+      navigate('/login');
     });
   };
 
