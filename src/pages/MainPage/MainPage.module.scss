@@ -9,12 +9,48 @@
 	align-items: center;
 	width: 100%;
 
+	&__btnOut {
+		margin-top: 24px;
+		align-self: flex-end;
+		transition: background-color .3s, box-shadow .3s;
+
+		padding: 12px 16px;
+		border: none;
+		border-radius: 3px;
+		box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+		color: #757575;
+		font-size: 14px;
+		font-weight: 500;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+
+		&:hover {
+			box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+		}
+
+		&:active {
+			background-color: #eeeeee;
+		}
+
+		&:focus {
+			outline: none;
+			box-shadow:
+				0 -1px 0 rgba(0, 0, 0, .04),
+				0 2px 4px rgba(0, 0, 0, .25),
+				0 0 0 3px #c8dafc;
+		}
+
+		@media (max-width: 768px) {
+			padding: 10px 14px;
+		}
+	}
+
 	&__logo {
 		width: 600px;
 		height: 200px;
 		display: inline-block;
 		text-align: center;
-		margin-top: 86px;
+		margin-top: 19.5px;
 		margin-bottom: 16px;
 
 		img {
@@ -31,7 +67,7 @@
 		@media (max-width: 425px) {
 			width: 312px;
 			height: 104px;
-			margin-top: 92px;
+			margin-top: 29.5px;
 			margin-bottom: 32px;
 		}
 	}
@@ -50,5 +86,3 @@
 		}
 	}
 }
-
-

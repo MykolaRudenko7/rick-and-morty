@@ -1,2 +1,2 @@
-export * from './MainPage/index'
-export * from './CharacterDetails/index'
+export * from './CharacterDetails/index';
+export * from './MainPage/index';

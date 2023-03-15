@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { Loader, NotFound } from './components';
-import { AuthProvider } from './components/auth';
+import { redirect, Route, Routes } from 'react-router-dom';
+import { Loader, NotFound, Login} from './components';
+import { auth } from './components/firebase';
 //
 import { CharacterDetails, MainPage } from './pages/index';
 //
@@ -24,7 +24,8 @@ function App() {
   const [currentPage, setCurrentPage] = React.useState(1);
   // значення інпуту 'глобальне'
   const [search, setSearch] = React.useState('');
-
+  // чи зареєстрований
+  const [isAuth, setIsAuth] = React.useState(localStorage.getItem('isAuth'));
   //
   let API = `https://rickandmortyapi.com/api/character?page=${currentPage}&name=${search}`;
 
@@ -55,13 +56,15 @@ function App() {
     return character.name.toLowerCase().includes(search.toLowerCase());
   });
 
+
+  if (!isAuth) {
+    return <Login setIsAuth={setIsAuth}/>
+  }
   return (
     <div className="app">
-      {/* <button>
-        <AuthProvider />
-      </button> */}
       <PageContext.Provider value={{ currentPage, setCurrentPage, info }}>
         <Routes>
+          <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
           <Route
             path="/"
             element={
@@ -69,12 +72,13 @@ function App() {
                 characters={filteredCharacters}
                 setSearch={setSearch}
                 ifLoading={ifLoading}
+                setIsAuth={setIsAuth}
               />
             }
           />
           <Route path="/characters/:id" results={data} element={<CharacterDetails />} />
           <Route
-            path="*"
+            path=""
             element={
               <Suspense fallback={<Loader />}>
                 <NotFound />

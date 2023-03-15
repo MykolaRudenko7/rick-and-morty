@@ -1,22 +1,28 @@
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 //
 //
 //
 //
 //
-const API_KEY = import.meta.env.VITE_RICK_AND_MORTY_API_KEY;
-
-// Your web app's Firebase configuration
+const API_KEY = import.meta.env.VITE_API_KEY;
+const VITE_AUTH_DOMAIN = import.meta.env.VITE_AUTH_DOMAIN;
+const VITE_PROJECT_ID = import.meta.env.VITE_PROJECT_ID;
+const VITE_STORAGE_BUCKET = import.meta.env.VITE_STORAGE_BUCKET;
+const VITE_MESSAGING_SENDER_ID = import.meta.env.VITE_MESSAGING_SENDER_ID;
+const VITE_APP_ID = import.meta.env.VITE_APP_ID;
+//
 const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain: 'rick-and-morty.firebaseapp.com',
-  projectId: 'rick-and-morty-61001',
-  storageBucket: 'rick-and-morty-61001.appspot.com',
-  messagingSenderId: '475855319140',
-  appId: '1:475855319140:web:c02adf7de5bc7ade72ef71',
+  apiKey: 'AIzaSyDIgcLwYwRR2G5QgVvi18a92g7yl8_POrA',
+  authDomain: 'testrick-96b86.firebaseapp.com',
+  projectId: 'testrick-96b86',
+  storageBucket: 'testrick-96b86.appspot.com',
+  messagingSenderId: '757603157857',
+  appId: '1:757603157857:web:8fdc2c14d97a181012a720',
 };
-
+//
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const googleAuthProvider = new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+//
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
