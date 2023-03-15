@@ -1,8 +1,7 @@
 import axios from 'axios';
-import React, { Suspense } from 'react';
-import { redirect, Route, Routes } from 'react-router-dom';
-import { Loader, NotFound, Login} from './components';
-import { auth } from './components/firebase';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Login, NotFound } from './components';
 //
 import { CharacterDetails, MainPage } from './pages/index';
 //
@@ -56,9 +55,8 @@ function App() {
     return character.name.toLowerCase().includes(search.toLowerCase());
   });
 
-
   if (!isAuth) {
-    return <Login setIsAuth={setIsAuth}/>
+    return <Login setIsAuth={setIsAuth} />;
   }
   return (
     <div className="app">
@@ -77,14 +75,7 @@ function App() {
             }
           />
           <Route path="/characters/:id" results={data} element={<CharacterDetails />} />
-          <Route
-            path=""
-            element={
-              <Suspense fallback={<Loader />}>
-                <NotFound />
-              </Suspense>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </PageContext.Provider>
     </div>
