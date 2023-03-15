@@ -31,6 +31,19 @@ export const MainPage = ({ setIsAuth, characters, setSearch, ifLoading }) => {
     });
   };
 
+  // вихід з акаунту
+  const signUserOut = () => {
+    // firebase
+    signOut(auth).then(() => {
+      // чищу ЛС
+      localStorage.clear();
+      // чищу стейт
+      setIsAuth(false);
+      // переправляю
+      window.location.pathname = '/login';
+    });
+  };
+
   return (
     // шапка
     <div className={style.mainPage}>
